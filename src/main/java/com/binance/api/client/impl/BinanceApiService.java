@@ -145,6 +145,10 @@ public interface BinanceApiService {
     @GET("/wapi/v3/depositAddress.html")
     Call<DepositAddress> getDepositAddress(@Query("asset") String asset, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
+    @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+    @POST("/wapi/v3/sub-account/transfer.html")
+    Call<SubAccountTransfer> subAccountTransfer(@Query("fromEmail") String fromEmail, @Query("toEmail") String toEmail, @Query("asset") String asset, @Query("amount") String amount, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+
     // User stream endpoints
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)

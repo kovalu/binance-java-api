@@ -6,6 +6,7 @@ import com.binance.api.client.domain.account.DepositHistory;
 import com.binance.api.client.domain.account.NewOrder;
 import com.binance.api.client.domain.account.NewOrderResponse;
 import com.binance.api.client.domain.account.Order;
+import com.binance.api.client.domain.account.SubAccountTransfer;
 import com.binance.api.client.domain.account.Trade;
 import com.binance.api.client.domain.account.TradeHistoryItem;
 import com.binance.api.client.domain.account.WithdrawHistory;
@@ -15,8 +16,8 @@ import com.binance.api.client.domain.account.request.CancelOrderRequest;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
 import com.binance.api.client.domain.account.request.OrderRequest;
 import com.binance.api.client.domain.account.request.OrderStatusRequest;
-import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.general.Asset;
+import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.market.AggTrade;
 import com.binance.api.client.domain.market.BookTicker;
 import com.binance.api.client.domain.market.Candlestick;
@@ -273,6 +274,17 @@ public interface BinanceApiRestClient {
    */
   DepositAddress getDepositAddress(String asset);
 
+  /**
+   * Transfer assets from/to main account and sub-account
+   * 
+   * @param fromEmail Sender sub-account email
+   * @param toEmail Recipient sub-account email
+   * @param asset Asset to transfer
+   * @param amount Amount to transfer
+   * @return SubAccountTransfer response
+   */
+  SubAccountTransfer subAccountTransfer(String fromEmail, String toEmail, String asset, String amount);
+  
   // User stream endpoints
 
   /**
