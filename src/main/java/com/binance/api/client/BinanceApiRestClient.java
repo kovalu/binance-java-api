@@ -33,6 +33,15 @@ import java.util.List;
  */
 public interface BinanceApiRestClient {
 
+	// my custom local endpoints, not in upstream repository !!!
+	
+	List<com.binance.api.client.domain.custom.FlexibleSavingsProductPosition> getFlexibleSavingsProductPosition(String asset);
+	
+	com.binance.api.client.domain.custom.PurchaseId purchaseFlexibleSavingsProduct(String productId, String amount);
+	
+	void redeemFlexibleSavingsProduct(String productId, String amount, String type);
+
+
   // General endpoints
 
   /**

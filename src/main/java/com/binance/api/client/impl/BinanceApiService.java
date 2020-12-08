@@ -22,6 +22,33 @@ import java.util.List;
  */
 public interface BinanceApiService {
 
+	// my custom local endpoints, not in upstream repository !!!
+	
+	@Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+	@GET("/sapi/v1/lending/daily/token/position")
+	Call<List<com.binance.api.client.domain.custom.FlexibleSavingsProductPosition>> getFlexibleSavingsProductPosition(
+			@Query("asset") String asset,
+			@Query("recvWindow") Long recvWindow,
+			@Query("timestamp") Long timestamp);
+	
+	@Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+	@POST("/sapi/v1/lending/daily/purchase")
+	Call<com.binance.api.client.domain.custom.PurchaseId> purchaseFlexibleSavingsProduct(
+			@Query("productId") String productId,
+			@Query("amount") String amount,
+			@Query("recvWindow") Long recvWindow,
+			@Query("timestamp") Long timestamp);
+	
+	@Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+	@POST("/sapi/v1/lending/daily/redeem")
+	Call<Void> redeemFlexibleSavingsProduct(
+			@Query("productId") String productId,
+			@Query("amount") String amount,
+			@Query("type") String type, // "FAST" or "NORMAL"
+			@Query("recvWindow") Long recvWindow,
+			@Query("timestamp") Long timestamp);
+	
+	
     // General endpoints
 
     @GET("/api/v1/ping")

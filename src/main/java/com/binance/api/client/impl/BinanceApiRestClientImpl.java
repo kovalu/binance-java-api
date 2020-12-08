@@ -26,6 +26,23 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     binanceApiService = createService(BinanceApiService.class, apiKey, secret);
   }
 
+	// my custom local endpoints, not in upstream repository !!!
+
+	@Override
+	public List<com.binance.api.client.domain.custom.FlexibleSavingsProductPosition> getFlexibleSavingsProductPosition(String asset) {
+		return executeSync(binanceApiService.getFlexibleSavingsProductPosition(asset, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+	}
+	
+	@Override
+	public com.binance.api.client.domain.custom.PurchaseId purchaseFlexibleSavingsProduct(String productId, String amount) {
+		return executeSync(binanceApiService.purchaseFlexibleSavingsProduct(productId, amount, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+	}
+	@Override
+	public void redeemFlexibleSavingsProduct(String productId, String amount, String type) {
+		executeSync(binanceApiService.redeemFlexibleSavingsProduct(productId, amount, type, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+	}
+	
+  
   // General endpoints
 
   @Override
